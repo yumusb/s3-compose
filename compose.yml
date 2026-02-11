@@ -1,0 +1,18 @@
+services:
+  s3-backup:
+
+    image: ghcr.io/yumusb/autobackup-s3:main
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET=${S3_BUCKET:-backup}
+      - S3_REGION=${S3_REGION:-auto}
+      - S3_ENDPOINT=${S3_ENDPOINT}
+      - PROJECT_NAME=${COMPOSE_PROJECT_NAME:-my-app-backup} # 默认为 compose 项目名称或手动覆盖
+      - EXCLUDE_PATTERNS=${EXCLUDE_PATTERNS:-*.log,*.tmp,vmdata} # 要排除的模式列表，以逗号分隔
+      - RETENTION_DAYS=${RETENTION_DAYS:-30}
+      - CRON_SCHEDULE=${CRON_SCHEDULE:-0 3 * * *} # 每天凌晨 3 点运行
+      - RUN_ON_START=true
+    volumes:
+      - ./data:/data # Mount the directory you want to backup here
+    restart: unless-stopped
