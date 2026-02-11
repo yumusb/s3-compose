@@ -1,7 +1,7 @@
 services:
   s3-backup:
 
-    image: ghcr.io/yumusb/autobackup-s3:main
+    image: ghcr.io/yumusb/s3-compose:main
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}

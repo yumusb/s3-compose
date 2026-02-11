@@ -1,4 +1,4 @@
-# AutoBackup S3
+# S3 Compose (AutoBackup S3)
 
 一个轻量级的 Docker 容器，用于将数据自动备份到任何兼容 S3 的存储服务（AWS S3, Cloudflare R2, MinIO, Aliyun OSS 等），并支持自动轮换和保留策略。
 
@@ -41,7 +41,7 @@ services:
 
   # 添加备份服务
   backup:
-    image: ghcr.io/yumusb/autobackup-s3:main
+    image: ghcr.io/yumusb/s3-compose:main
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
